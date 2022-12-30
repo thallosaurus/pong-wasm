@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  
+  <title>Hello World!</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <script type="module">
+    import init from './assets/bin/pong_wasm.js';
+
+    window.addEventListener('load', () => {
+      
+      let canvas = document.getElementById("maincanvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      window.addEventListener("resize", (ev) => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      init();
+    });
+
+  </script>
+</head>
+
+<body>
+  <canvas id="maincanvas"></canvas>
+</body>
+
+</html>

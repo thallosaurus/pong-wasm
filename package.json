@@ -1,0 +1,14 @@
+{
+  "name": "pong-wasm",
+  "version": "1.0.0",
+  "main": "index.electron.js",
+  "author": "Philipp Gaßner <rillo@cyberpsych0si.is>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "electron": "^22.0.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
