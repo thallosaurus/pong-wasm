@@ -46,7 +46,7 @@ impl App {
 
         self.ctx
             .clear_rect(0.0, 0.0, canvas.width().into(), canvas.height().into());
-        Self::draw_background(&canvas, &self.ctx);
+        self.draw_background(&canvas, &self.ctx);
         let area = Rect {
             x: 0.0,
             y: 0.0,
@@ -69,8 +69,8 @@ impl App {
         self.game.update_tick();
     }
 
-    fn draw_background(canvas: &HtmlCanvasElement, ctx: &CanvasRenderingContext2d) {
-        ctx.set_fill_style(&"black".into());
+    fn draw_background(&self, canvas: &HtmlCanvasElement, ctx: &CanvasRenderingContext2d) {
+        ctx.set_fill_style(&self.game.get_background().into());
         ctx.fill_rect(0.0, 0.0, canvas.width().into(), canvas.height().into());
     }
 

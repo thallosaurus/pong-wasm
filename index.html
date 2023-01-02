@@ -11,6 +11,12 @@
     import init, { App } from './assets/bin/pong_wasm.js';
 
     window.addEventListener('load', () => {
+
+      const answer = confirm("By clicking okay you acknowledge that you are not sensitive to sudden color changes and/or sudden light changes");
+      
+
+      if (answer) {
+
       
       let canvas = document.getElementById("maincanvas");
       canvas.width = window.innerWidth;
@@ -23,12 +29,17 @@
 
       init().then(e => {
 
-        let app = new App(canvas.getContext("webgl2"));
+        let app = new App(canvas.getContext("2d"));
         //let g = Game.new();
         //console.log(new App(canvas.getContext("2d")));
 
         window.addEventListener("mousemove", (ev) => {
           //console.log(ev);
+          app.mouse_move_input(ev.clientX, ev.clientY);
+      });
+
+        window.addEventListener("touchmove", (ev) => {
+          console.log(ev);
           app.mouse_move_input(ev.clientX, ev.clientY);
       });
 
@@ -45,6 +56,7 @@
         requestAnimationFrame(loop);
       });
 
+    }
     });
 
   </script>

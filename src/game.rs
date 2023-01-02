@@ -1,5 +1,7 @@
 use std::f32::consts::TAU;
 
+use js_sys::Math;
+use random_color::RandomColor;
 use wasm_bindgen::prelude::*;
 use web_sys::{console, CanvasRenderingContext2d};
 
@@ -15,6 +17,7 @@ pub struct Game {
     paddles: Vec<Paddle>,
     ball: Ball,
     state: State,
+    bg: String
 }
 
 #[wasm_bindgen]
@@ -34,22 +37,35 @@ impl Game {
         Self {
             paddles: vec![Paddle::new(Player::One, canvas_a), Paddle::new(Player::Two, canvas_b)],
             state: State::Stopped,
-            ball
+            ball,
+            bg: String::from("rgb(0, 0, 0)"),
         }
     }
 
     pub fn update_tick(&mut self) {
         //self.paddles[0].area.x += 3.0;
-        self.ball.update();
+        if self.ball.update() {
+            console::log_1(&"Pong".into());
+
+            let r = Math::floor(Math::random() * 255.0) as u8;
+            let g = Math::floor(Math::random() * 255.0) as u8;
+            let b = Math::floor(Math::random() * 255.0) as u8;
+
+            self.bg = format!("rgb({}, {}, {}", r, g, b);
+        }
         self.update_enemy();
     }
 
+    pub fn get_background(&self) -> String {
+        self.bg.clone()
+    }
+
     pub fn draw(&self, ctx: &web_sys::CanvasRenderingContext2d, area: Rect) {
-        for paddle in &self.paddles {
+        /*for paddle in &self.paddles {
             let a = paddle.area;
             ctx.set_fill_style(&"white".into());
             ctx.fill_rect(a.x, a.y, a.w, a.h);
-        }
+        }*/
 
         //arc(x, y, radius, startAngle, endAngle)
         ctx.set_stroke_style(&"white".into());
