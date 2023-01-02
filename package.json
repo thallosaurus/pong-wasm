@@ -9,6 +9,7 @@
     "electron": "^22.0.0"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "wasm-pack build --out-dir assets/bin --target web"
   }
 }

@@ -8,7 +8,7 @@
   <title>Hello World!</title>
   <link rel="stylesheet" href="./assets/style.css">
   <script type="module">
-    import init from './assets/bin/pong_wasm.js';
+    import init, { App } from './assets/bin/pong_wasm.js';
 
     window.addEventListener('load', () => {
       
@@ -21,7 +21,30 @@
         canvas.height = window.innerHeight;
       });
 
-      init();
+      init().then(e => {
+
+        let app = new App(canvas.getContext("webgl2"));
+        //let g = Game.new();
+        //console.log(new App(canvas.getContext("2d")));
+
+        window.addEventListener("mousemove", (ev) => {
+          //console.log(ev);
+          app.mouse_move_input(ev.clientX, ev.clientY);
+      });
+
+        
+        const loop = (ts) => {
+          app.draw_tick();
+          app.update_tick();
+          
+          //g.tick();
+          
+          //console.log(Game);
+          requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+      });
+
     });
 
   </script>

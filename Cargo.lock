@@ -53,6 +53,8 @@ name = "pong-wasm"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
+ "js-sys",
+ "tau",
  "wasm-bindgen",
  "wasm-bindgen-test",
  "web-sys",
@@ -92,6 +94,12 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
+
+[[package]]
+name = "tau"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10431def328b5e62fefb5f0c315ea0249f6fac2aadbf3bf4e6894a1c2e53c53d"
 
 [[package]]
 name = "unicode-ident"
